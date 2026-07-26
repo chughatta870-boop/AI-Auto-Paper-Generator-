@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AI Auto Papers Generator</title>
+<meta name="description" content="AI Auto Papers Generator - Class 1 se 12 tak ky liye AI say auto question papers banayen, save, download, share aur print karen.">
+<meta name="theme-color" content="#0f172a">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AI Papers">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">🧠</span>
+    <div>
+      <h1>AI Auto Papers Generator</h1>
+      <p class="tagline">M Ijaz • GHS 124/NB</p>
+    </div>
+  </div>
+  <button id="libraryBtn" class="icon-btn" title="Saved Papers">📚</button>
+</header>
+
+<main id="app">
+
+  <!-- ===== GENERATOR TAB ===== -->
+  <section id="generatorView" class="view active">
+    <form id="paperForm" class="card">
+      <h2>Paper Ki Tafseelat</h2>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Class / Grade</label>
+          <select id="f_class" required>
+            <option value="">Class Muntakhib Karen</option>
+            <option>Nursery</option><option>Kachi</option><option>Pakki</option>
+            <option>Class 1</option><option>Class 2</option><option>Class 3</option>
+            <option>Class 4</option><option>Class 5</option><option>Class 6</option>
+            <option>Class 7</option><option>Class 8</option><option>Class 9</option>
+            <option>Class 10</option><option>Class 11</option><option>Class 12</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Subject</label>
+          <input type="text" id="f_subject" placeholder="e.g. Mathematics, Urdu, Science" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Chapters / Topics</label>
+        <textarea id="f_topics" rows="2" placeholder="e.g. Chapter 1: Whole Numbers, Chapter 2: Fractions" required></textarea>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Paper Type</label>
+          <select id="f_type">
+            <option>Class Test</option>
+            <option>Weekly Test</option>
+            <option>Monthly Test</option>
+            <option>Mid Term Exam</option>
+            <option>Final Term Exam</option>
+            <option>Quiz</option>
+            <option>Assignment</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Language</label>
+          <select id="f_lang">
+            <option value="Urdu">Urdu</option>
+            <option value="English">English</option>
+            <option value="Bilingual (Urdu + English)">Bilingual</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid3">
+        <div class="field">
+          <label>MCQs</label>
+          <input type="number" id="f_mcq" min="0" max="50" value="10">
+        </div>
+        <div class="field">
+          <label>Short Questions</label>
+          <input type="number" id="f_short" min="0" max="30" value="5">
+        </div>
+        <div class="field">
+          <label>Long Questions</label>
+          <input type="number" id="f_long" min="0" max="15" value="2">
+        </div>
+      </div>
+
+      <div class="grid2">
+        <div class="field">
+          <label>Difficulty</label>
+          <select id="f_diff">
+            <option>Easy</option>
+            <option selected>Medium</option>
+            <option>Hard</option>
+            <option>Mixed</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Total Marks</label>
+          <input type="number" id="f_marks" min="10" value="50">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Extra Instructions (optional)</label>
+        <input type="text" id="f_extra" placeholder="e.g. answer key bhi den, PECTTA pattern follow karen">
+      </div>
+
+      <button type="submit" id="genBtn" class="btn-primary">
+        <span id="genBtnText">✨ AI Say Paper Banayen</span>
+      </button>
+    </form>
+
+    <section id="outputCard" class="card output-card hidden">
+      <div class="output-head">
+        <h2 id="outputTitle">Generated Paper</h2>
+        <span id="genStatus" class="status-dot"></span>
+      </div>
+      <div id="paperOutput" class="paper-output" dir="auto"></div>
+
+      <div id="actionBar" class="action-bar hidden">
+        <button class="act-btn" id="saveBtn">💾 Save</button>
+        <button class="act-btn" id="copyBtn">📋 Copy</button>
+        <button class="act-btn" id="downloadBtn">⬇️ Download</button>
+        <button class="act-btn" id="shareBtn">📤 Share</button>
+        <button class="act-btn" id="printBtn">🖨️ Print</button>
+        <button class="act-btn" id="regenBtn">🔁 Regenerate</button>
+      </div>
+    </section>
+  </section>
+
+  <!-- ===== LIBRARY TAB ===== -->
+  <section id="libraryView" class="view">
+    <div class="card">
+      <div class="lib-head">
+        <h2>Saved Papers</h2>
+        <button id="backBtn" class="icon-btn">✖️</button>
+      </div>
+      <input type="text" id="searchBox" placeholder="🔍 Search saved papers...">
+      <div id="papersList" class="papers-list"></div>
+      <p id="emptyMsg" class="empty-msg hidden">Abhi tak koi paper save nahi hua.</p>
+    </div>
+  </section>
+
+</main>
+
+<div id="toast" class="toast"></div>
+
+<!-- Paper detail modal -->
+<div id="detailModal" class="modal hidden">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h3 id="detailTitle">Paper</h3>
+      <button id="closeDetail" class="icon-btn">✖️</button>
+    </div>
+    <div id="detailBody" class="paper-output" dir="auto"></div>
+    <div class="action-bar">
+      <button class="act-btn" id="detailCopy">📋 Copy</button>
+      <button class="act-btn" id="detailDownload">⬇️ Download</button>
+      <button class="act-btn" id="detailShare">📤 Share</button>
+      <button class="act-btn" id="detailPrint">🖨️ Print</button>
+      <button class="act-btn danger" id="detailDelete">🗑️ Delete</button>
+    </div>
+  </div>
+</div>
+
+<div id="installBar" class="install-bar hidden">
+  <span>App install karen behtar tajurbay ky liye</span>
+  <button id="installBtn">Install</button>
+  <button id="installClose" class="icon-btn">✖️</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
