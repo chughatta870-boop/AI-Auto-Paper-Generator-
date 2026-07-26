@@ -1,0 +1,61 @@
+{
+  "id": "/",
+  "name": "AI Auto Papers Generator",
+  "short_name": "AI Papers",
+  "description": "AI say Class 1 se 12 tak ky liye auto question papers banayen, save, download, share aur print karen. By M Ijaz, GHS 124/NB.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone", "minimal-ui", "browser"],
+  "orientation": "portrait-primary",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "lang": "ur",
+  "dir": "rtl",
+  "categories": ["education", "productivity", "utilities"],
+  "icons": [
+    { "src": "icon-72.png", "sizes": "72x72", "type": "image/png", "purpose": "any" },
+    { "src": "icon-96.png", "sizes": "96x96", "type": "image/png", "purpose": "any" },
+    { "src": "icon-128.png", "sizes": "128x128", "type": "image/png", "purpose": "any" },
+    { "src": "icon-144.png", "sizes": "144x144", "type": "image/png", "purpose": "any" },
+    { "src": "icon-152.png", "sizes": "152x152", "type": "image/png", "purpose": "any" },
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-384.png", "sizes": "384x384", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Naya Paper Banayen",
+      "short_name": "New Paper",
+      "description": "Turant naya AI paper generate karen",
+      "url": "/",
+      "icons": [{ "src": "icon-96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Saved Papers",
+      "short_name": "Library",
+      "description": "Save shuda papers dekhen",
+      "url": "/?view=library",
+      "icons": [{ "src": "icon-96.png", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "AI Auto Papers Generator - Desktop View"
+    },
+    {
+      "src": "screenshot-narrow.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "AI Auto Papers Generator - Mobile View"
+    }
+  ],
+  "prefer_related_applications": false
+}
